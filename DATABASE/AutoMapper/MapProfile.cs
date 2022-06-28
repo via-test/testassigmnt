@@ -11,6 +11,8 @@ using ARCHIVE.COMMON.DTOModels.UI;
 using ARCHIVE.COMMON.Entities;
 using Newtonsoft.Json;
 using DATABASE.DTOModels.UI;
+using DATABASE.DTOModels.Mail;
+using DATABASE.Entities.Mail;
 
 namespace ARCHIVE.COMMON.AutoMapper
 {
@@ -177,6 +179,13 @@ namespace ARCHIVE.COMMON.AutoMapper
                 .ForMember(d => d.ClientName, a => a.MapFrom(c => c.Client.Name))
                 .ReverseMap()
                 .ForMember(d => d.Client, a => a.Ignore());
+
+            CreateMap<MailMessage, MailMessageDTO>()
+                .ReverseMap();
+
+            CreateMap<MailMessageFile, MailMessageFileDTO>()
+                .ReverseMap()
+                .ForMember(d => d.DocFile, s => s.Ignore());
         }
     }
 }

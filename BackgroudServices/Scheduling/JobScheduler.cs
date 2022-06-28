@@ -31,6 +31,8 @@ namespace BackgroudServices.Scheduling
                 _Schedules.Add("OCRSenderService", "0/2 * * * *");
                 _Schedules.Add("OCRConsumerService", "0/2 * * * *");
                 _Schedules.Add("ContractNotificationService", "0 4 * * 5");
+                _Schedules.Add("ContractNotificationService", "0 4 * * 5");
+                _Schedules.Add("MailMessageQueueService", "0 5 * * *");
                 //_Schedules.Add("MigrationService", "0/5 * * * *");
                 return _Schedules;
             }

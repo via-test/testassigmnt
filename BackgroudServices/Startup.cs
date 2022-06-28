@@ -23,6 +23,9 @@ using COMMON.Common.Services.StorageService;
 using COMMON.Models;
 using COMMON.Common.Services.ContextService;
 using CloudArchive.Services.PermissionService;
+using COMMON.Common.Services.Mail;
+using COMMON.Database.Services;
+using COMMON.Database.Services.Mail;
 
 namespace BackgroudServices
 {
@@ -73,6 +76,9 @@ namespace BackgroudServices
             services.AddScoped<IVerification, Verification>();
             services.AddScoped<IContextService, ContextService>();
             services.AddScoped<IPermissionService, PermissionService>();
+
+            services.AddScoped<IMailMessageQueueService, MailMessageQueueService>();
+            services.AddScoped<IMailMessageService, MailMessageService>();
 
             services.AddControllers()
                 .AddJsonOptions(options =>

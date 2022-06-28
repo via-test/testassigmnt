@@ -5,13 +5,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using ARCHIVE.COMMON.DTOModels;
 using ARCHIVE.COMMON.DTOModels.UI;
 using ARCHIVE.COMMON.Entities;
 using CloudArchive.Services;
 using COMMON.Common.Services.ContextService;
+using COMMON.Database.Services;
 using DATABASE.Context;
+using DATABASE.DTOModels.Mail;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -31,6 +34,8 @@ namespace COMMON.Utilities
         private readonly IConfiguration _cfg;
         private readonly ICommonService _commonService;
         private readonly IEmailService _emailSender;
+        private readonly IMailMessageService _mailMessageService;
+
         public MailConstructor(IContextService context)
         {
             _commonService = context.CommonService;
@@ -116,7 +121,8 @@ namespace COMMON.Utilities
         public async Task<bool> SendMail()
         {
             UpdateTemplate();
-            await _emailSender.SendEmailAsync(_Recipients, _Subject, _Text, _files);
+            await _mailMessageService.ToQueue(_Recipients, _Subject, _Text, _files);
+            // await _emailSender.SendEmailAsync(_Recipients, _Subject, _Text, _files);
             NewMail();
             return true;
         }

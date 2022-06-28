@@ -8,6 +8,7 @@ using ARCHIVE.COMMON.Entities;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
 using System;
+using DATABASE.Entities.Mail;
 
 namespace DATABASE.Context
 {
@@ -50,6 +51,9 @@ namespace DATABASE.Context
         public DbSet<AdditionalField> AdditionalFields { get; set; }
         public DbSet<ContractExtended> ContractsExtended { get; set; }
         public DbSet<MetadataExtended> MetadatasExtended { get; set; }
+
+        public DbSet<MailMessage> MailRecords { get; set; }
+        public DbSet<MailMessageFile> MailFiles { get; set; }
 
         public SearchServiceDBContext(DbContextOptions<SearchServiceDBContext> options) : base(options)
         {
